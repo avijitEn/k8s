@@ -1,0 +1,51 @@
+nodeSelector provides a very simple way to constrain pods to nodes with particular labels. The affinity/anti-affinity feature, greatly expands the types of constraints you can express. The key enhancements are
+
+The affinity/anti-affinity language is more expressive. The language offers more matching rules besides exact matches created with a logical AND operation;
+you can indicate that the rule is “soft”/“preference” rather than a hard requirement, so if the scheduler can’t satisfy it, the pod will still be scheduled;
+you can constrain against labels on other pods running on the node (or other topological domain), rather than against labels on the node itself, which allows rules about which pods can and cannot be co-located
+
+
+Node affinity is conceptually similar to nodeSelector -- it allows you to constrain which nodes your pod is eligible to be scheduled on, based on labels on the node.
+
+There are currently two types of node affinity, called requiredDuringSchedulingIgnoredDuringExecution
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    ports:
+    - containerPort: 80
+    env:
+     - name : username
+       valueFrom:
+         secretKeyRef:
+          name: app-secret
+          key: username
+
+    resources: {}
+  dnsPolicy: ClusterFirst
+  tolerations:
+   - key: "mycolour"
+     operator: "Equal"
+     value: "blue"
+     effect: "NoSchedule"
+  restartPolicy: Never
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: size
+            operator: In
+            values:
+            - larg
+            - small
+            - large
+status: {}

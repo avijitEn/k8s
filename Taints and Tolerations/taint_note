@@ -1,0 +1,42 @@
+#https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+
+[root@osboxes ~]# kubectl taint node osboxes  mycolour=blue:NoSchedule
+node/osboxes tainted
+[root@osboxes ~]# kubectl describe nodes |grep -i taints
+Taints:             mycolour=blue:NoSchedule
+
+
+
+
+[root@osboxes ~]# kubectl taint node osboxes mytag=red:NoSchedule-
+node/osboxes untainted
+[root@osboxes ~]# kubectl describe nodes
+Name:               osboxes
+Roles:              master
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=osboxes
+                    kubernetes.io/os=linux
+                    minikube.k8s.io/commit=93af9c1e43cab9618e301bc9fa720c63d5efa393
+                    minikube.k8s.io/name=minikube
+                    minikube.k8s.io/updated_at=2020_05_07T06_15_52_0700
+                    minikube.k8s.io/version=v1.9.2
+                    node-role.kubernetes.io/master=
+Annotations:        kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Thu, 07 May 2020 06:15:26 -0400
+Taints:             mycolour=blue:NoSchedule
+                    mytag=red:NoSchedule
+Unschedulable:      false
+
+
+You specify a toleration for a pod in the PodSpec. Both of the following tolerations “match” the taint created by the kubectl taint line above, and thus a pod with either toleration would be able to schedule onto node1:
+
+tolerations:
+- key: "key"
+  operator: "Equal"
+  value: "value"
+  effect: "NoSchedule"
+

@@ -1,0 +1,64 @@
+ConfigMap can be confired by Command line as well As yaml Definatio
+
+1. for Command line you have to pass key pare input or import from file
+
+for command line input
+a)
+kubectl create configmap myCompany --from-literal=CompanyName=myExample.com --from-literal=jontype=permanent
+
+you also able to create only configmap name then you can edit the file ny using comamnd kubectl edit
+
+kubectl create configmap myexample
+[root@osboxes ~]# kubectl edit configmaps myexample
+
+Add the line with
+  data:
+  1stname: singbhi
+  name: exammple
+
+b) from file , you can assign key pared value
+ kubectl create cm userdb --from-file=username=/root/username.cnf --from-file=password=/root/password.cnf
+
+you also assign complete file as a key pared file for volume mount
+
+myfile.cnf: |
+    hostip  = 11.22.33.44
+    dbname   = mynangodb
+    userid  =  sysadmin
+    password = password123
+kubectl create configmap dummyfile --from-file=/root/myfile.cnf
+
+
+
+now injecting to POD , there is two way to assign to PO as Environment Variable or Volume Mount
+
+for Environment
+
+Attach to the created Pod using `kubectl exec -it pod-env-var sh`. Then run `env` and see that each key from the ConfigMap is now available as an environment variable.
+
+yaml file for configmap from file
+
+apiVersion: v1
+data:
+  myconfig.properties: |
+   CompanyName= myExample.com
+   jontype= permanent
+
+
+
+
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: myCompany
+
+apiVersion: v1
+data:
+  password: |
+    admin123
+  username: |
+    mydbuser
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: userdb

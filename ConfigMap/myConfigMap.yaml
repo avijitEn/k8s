@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  CompanyName: myExample.com
+  jontype: permanent
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: myCompany

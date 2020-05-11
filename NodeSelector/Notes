@@ -1,0 +1,139 @@
+Add Lavel in Nodes
+
+
+[root@osboxes ~]# kubectl label nodes osboxes  size=large
+node/osboxes labeled
+[root@osboxes ~]# kubectl label nodes osboxes  large^C
+[root@osboxes ~]# kubectl describe nodes
+Name:               osboxes
+Roles:              master
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=osboxes
+                    kubernetes.io/os=linux
+                    minikube.k8s.io/commit=93af9c1e43cab9618e301bc9fa720c63d5efa393
+                    minikube.k8s.io/name=minikube
+                    minikube.k8s.io/updated_at=2020_05_07T06_15_52_0700
+                    minikube.k8s.io/version=v1.9.2
+                    node-role.kubernetes.io/master=
+                    size=large
+Annotations:        kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Thu, 07 May 2020 06:15:26 -0400
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  osboxes
+  AcquireTime:     <unset>
+  RenewTime:       Mon, 11 May 2020 15:23:52 -0400
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Mon, 11 May 2020 15:23:13 -0400   Thu, 07 May 2020 06:15:12 -0400   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Mon, 11 May 2020 15:23:13 -0400   Thu, 07 May 2020 06:15:12 -0400   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Mon, 11 May 2020 15:23:13 -0400   Thu, 07 May 2020 06:15:12 -0400   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Mon, 11 May 2020 15:23:13 -0400   Thu, 07 May 2020 06:15:33 -0400   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.31.191
+  Hostname:    osboxes
+Capacity:
+  cpu:                2
+  ephemeral-storage:  241546Mi
+  hugepages-2Mi:      0
+  memory:             1078424Ki
+  pods:               110
+Allocatable:
+  cpu:                2
+  ephemeral-storage:  241546Mi
+  hugepages-2Mi:      0
+  memory:             1078424Ki
+  pods:               110
+System Info:
+  Machine ID:                 92457d6219c4454dadb51957a3fdd759
+  System UUID:                83B0801D-CB2D-154A-9FB8-9CE7142099B4
+  Boot ID:                    5dbdfd1d-5e7c-4fff-9e06-7ced78d79d2c
+  Kernel Version:             3.10.0-1127.el7.x86_64
+  OS Image:                   CentOS Linux 7 (Core)
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  docker://19.3.8
+  Kubelet Version:            v1.18.0
+  Kube-Proxy Version:         v1.18.0
+Non-terminated Pods:          (10 in total)
+  Namespace                   Name                               CPU Requests  CPU Limits  Memory Requests  Memory Limits  AGE
+  ---------                   ----                               ------------  ----------  ---------------  -------------  ---
+  default                     nginx                              0 (0%)        0 (0%)      0 (0%)           0 (0%)         12m
+  kube-system                 coredns-66bff467f8-fstg2           100m (5%)     0 (0%)      70Mi (6%)        170Mi (16%)    4d9h
+  kube-system                 coredns-66bff467f8-qchtv           100m (5%)     0 (0%)      70Mi (6%)        170Mi (16%)    4d9h
+  kube-system                 etcd-osboxes                       0 (0%)        0 (0%)      0 (0%)           0 (0%)         4d9h
+  kube-system                 kube-apiserver-osboxes             250m (12%)    0 (0%)      0 (0%)           0 (0%)         4d9h
+  kube-system                 kube-controller-manager-osboxes    200m (10%)    0 (0%)      0 (0%)           0 (0%)         4d9h
+  kube-system                 kube-proxy-w9ngt                   0 (0%)        0 (0%)      0 (0%)           0 (0%)         4d9h
+  kube-system                 kube-scheduler-osboxes             100m (5%)     0 (0%)      0 (0%)           0 (0%)         4d9h
+  kube-system                 storage-provisioner                0 (0%)        0 (0%)      0 (0%)           0 (0%)         4h28m
+  myexample                   nginx                              0 (0%)        0 (0%)      0 (0%)           0 (0%)         3h4m
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests     Limits
+  --------           --------     ------
+  cpu                750m (37%)   0 (0%)
+  memory             140Mi (13%)  340Mi (32%)
+  ephemeral-storage  0 (0%)       0 (0%)
+  hugepages-2Mi      0 (0%)       0 (0%)
+Events:              <none>
+
+
+[root@osboxes ~]# kubectl label nodes osboxes  size=large
+node/osboxes labeled
+[root@osboxes ~]# kubectl label nodes osboxes  large^C
+[root@osboxes ~]# kubectl describe nodes
+Name:               osboxes
+Roles:              master
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=osboxes
+                    kubernetes.io/os=linux
+                    minikube.k8s.io/commit=93af9c1e43cab9618e301bc9fa720c63d5efa393
+                    minikube.k8s.io/name=minikube
+                    minikube.k8s.io/updated_at=2020_05_07T06_15_52_0700
+                    minikube.k8s.io/version=v1.9.2
+                    node-role.kubernetes.io/master=
+                    size=large
+
+
+
+[root@osboxes ~]# cat envPOD.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    ports:
+    - containerPort: 80
+    env:
+     - name : username
+       valueFrom:
+         secretKeyRef:
+          name: app-secret
+          key: username
+
+    resources: {}
+  dnsPolicy: ClusterFirst
+  tolerations:
+   - key: "mycolour"
+     operator: "Equal"
+     value: "blue"
+     effect: "NoSchedule"
+  restartPolicy: Never
+  nodeSelector:
+    size: large
+status: {}
