@@ -22,8 +22,8 @@ spec:
       name: worker-deployment
     spec:
       containers:
-      - image: kodekloud/examplevotingapp_worker
-        name: worker
+      - image: dockersamples/examplevotingapp_worker
+        name: worker-app
 
         resources: {}
 status: {}
