@@ -1,0 +1,47 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: result-deployment
+  name: result-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-voting-app
+      name: result-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demo-voting-app
+        name: result-deployment
+    spec:
+      containers:
+      - image: kodekloud/examplevotingapp_result:before
+        name: result-deployment
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: result-deployment
+  name: result-service
+spec:
+  ports:
+  - port: 5001
+    protocol: TCP
+    targetPort: 80
+    nodePort: 31001
+  selector:
+    app: demo-voting-app
+    name: result-deployment
+  type: NodePort

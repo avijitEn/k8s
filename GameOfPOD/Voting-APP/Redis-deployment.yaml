@@ -1,0 +1,56 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: redis
+  name: redis-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+
+      app: demo-voting-app
+      name: redis-deployment
+
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demo-voting-app
+        name: redis-deployment
+    spec:
+      volumes:
+        - name: redis-data
+          emptyDir: {}
+
+      containers:
+      - image: redis:alpine
+        name: redis-deployment
+        ports:
+        - containerPort: 6379
+        resources: {}
+        volumeMounts:
+          - name: redis-data
+            mountPath: /data
+
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: redis
+  name: redis
+spec:
+  ports:
+  - port: 6379
+    protocol: TCP
+    targetPort: 6379
+
+  selector:
+    app: demo-voting-app
+    name: redis-deployment
+  type: ClusterIP
