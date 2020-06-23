@@ -18,6 +18,7 @@ spec:
       labels:
         app: demo-voting-app
         name: result-deployment
+      name: result-deployment
     spec:
       containers:
       - image: kodekloud/examplevotingapp_result:before

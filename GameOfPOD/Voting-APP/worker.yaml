@@ -19,6 +19,7 @@ spec:
       labels:
         app: demo-voting-app
         name: worker-deployment
+      name: worker-deployment
     spec:
       containers:
       - image: kodekloud/examplevotingapp_worker

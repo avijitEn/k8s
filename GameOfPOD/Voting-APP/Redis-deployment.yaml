@@ -19,6 +19,7 @@ spec:
       labels:
         app: demo-voting-app
         name: redis-deployment
+      name: redis-deployment
     spec:
       volumes:
         - name: redis-data
