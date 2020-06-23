@@ -4,22 +4,22 @@ metadata:
   creationTimestamp: null
   labels:
     app: redis
-  name: redis-deployment
+  name: redis
 spec:
   replicas: 1
   selector:
     matchLabels:
 
-      app: demo-voting-app
-      name: redis-deployment
+      app: radis
+
 
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: demo-voting-app
-        name: redis-deployment
-      name: redis-deployment
+        app: radis
+
+
     spec:
       volumes:
         - name: redis-data
@@ -52,6 +52,6 @@ spec:
     targetPort: 6379
 
   selector:
-    app: demo-voting-app
-    name: redis-deployment
+    app: radis
+
   type: ClusterIP

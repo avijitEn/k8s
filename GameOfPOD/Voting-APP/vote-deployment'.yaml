@@ -3,28 +3,28 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: vote-deployment
+    app: vote-app
 
-  name: vote-deployment
+  name: vote-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: demo-voting-app
-      name: vote-deployment
+      app: vote-app
+
 
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: demo-voting-app
-        name: vote-deployment
-      name: vote-deployment
+        app: vote-app
+
+
     spec:
       containers:
       - image: dockersamples/examplevotingapp_vote
-        name: voting-app
+        name: vote-app
         ports:
         - containerPort: 80
         resources: {}
@@ -36,8 +36,8 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: vote-deployment
-  name: vote-service
+    app: vote-app
+  name: vote-app
 spec:
   ports:
   - port: 5000
@@ -45,6 +45,6 @@ spec:
     targetPort: 80
     nodePort: 31000
   selector:
-    app: demo-voting-app
-    name: vote-deployment
+    app: vote-app
+
   type: NodePort

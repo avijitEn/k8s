@@ -4,22 +4,22 @@ metadata:
   creationTimestamp: null
   labels:
     app: db
-  name: db-deployment
+
+  name: db
 spec:
   replicas: 1
   selector:
     matchLabels:
 
-      app: demo-voting-app
-      name: db-deployment
+      app: db
 
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: demo-voting-app
-        name: db-deployment
-      name: db-deployment
+        app: db
+
+
     spec:
       volumes:
         - name: db-data
@@ -29,6 +29,11 @@ spec:
 
       - image: postgres:9.4
         name: postgres
+        env:
+          - name: POSTGRES_USER
+            value: postgres
+          - name: POSTGRES_PASSWORD
+            value: postgres
         ports:
         - containerPort: 5432
         resources: {}
@@ -55,5 +60,5 @@ spec:
 
   selector:
     app: demo-voting-app
-    name: db-deployment
+    name: db
   type: ClusterIP

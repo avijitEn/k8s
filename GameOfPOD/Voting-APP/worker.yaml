@@ -4,26 +4,26 @@ metadata:
   creationTimestamp: null
   labels:
 
-    app: worker-deployment
+    app: worker
   name: worker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: demo-voting-app
-      name: worker-deployment
+      app: worker
+
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: demo-voting-app
-        name: worker-deployment
-      name: worker-deployment
+        app: worker
+
+
     spec:
       containers:
       - image: dockersamples/examplevotingapp_worker
-        name: worker-app
+        name: worker
 
         resources: {}
 status: {}
